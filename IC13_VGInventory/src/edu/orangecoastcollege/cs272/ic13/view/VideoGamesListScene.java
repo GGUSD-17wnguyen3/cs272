@@ -20,25 +20,27 @@ public class VideoGamesListScene implements Initializable {
 	private ComboBox<String> publishersCB;
 	@FXML
 	private ComboBox<String> platformsCB;
-	
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//TODO: Complete this method
+	    allVideoGamesLV.setItems(controller.getAllVideoGames());
+	    publishersCB.setItems(controller.getDistinctPublishers());
+	    platformsCB.setItems(controller.getDistinctPlatforms());
 	}
-	
+
 	@FXML
-	public Object addGameToInventory()
+	public boolean addGameToInventory()
 	{
-		//TODO: Complete this method
-		return this;
+	    VideoGame selectedGame = allVideoGamesLV.getSelectionModel().getSelectedItem();
+	    return controller.addGameToUsersInventory(selectedGame);
 	}
-	
+
 	@FXML
 	public Object viewInventory()
 	{
-		//TODO: Complete this method
-		return this;
+	    ViewNavigator.loadScene("User's Video Gmaes", ViewNavigator.VIEW_INVENTORY_SCENE);
+	    return this;
 	}
 
 }
